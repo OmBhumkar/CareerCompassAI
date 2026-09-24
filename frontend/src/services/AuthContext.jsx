@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post('http://localhost:8000/api/auth/login', { email, password });
+    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/login', { email, password });
     localStorage.setItem('token', res.data.access_token);
     localStorage.setItem('user', JSON.stringify(res.data.user));
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
-    const res = await axios.post('http://localhost:8000/api/auth/register', { name, email, password });
+    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/register', { name, email, password });
     localStorage.setItem('token', res.data.access_token);
     localStorage.setItem('user', JSON.stringify(res.data.user));
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;

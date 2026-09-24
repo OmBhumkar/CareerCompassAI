@@ -66,11 +66,11 @@ const Assessment = () => {
         technical_score
       };
 
-      const res = await axios.post('http://localhost:8000/api/ml/predict', { user_data: payload });
+      const res = await axios.post('https://careercompassai-17gg.onrender.com/api/ml/predict', { user_data: payload });
       
       // Save to history
       if (user) {
-        await axios.post('http://localhost:8000/api/assessment/history', {
+        await axios.post('https://careercompassai-17gg.onrender.com/api/assessment/history', {
           user_id: user.id,
           user_data: payload,
           prediction_result: res.data
