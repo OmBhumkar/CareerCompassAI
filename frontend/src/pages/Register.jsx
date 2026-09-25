@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,12 +17,16 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       await register(name, email, password);
       navigate('/assessment');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Registration failed. Please try again.');
+      if (!err.response) {
+        setError('Cannot reach the server. It may be waking up — please wait 30 seconds and try again.');
+      } else {
+        setError(err.response?.data?.detail || 'Registration failed. Please try again.');
+      }
       setLoading(false);
     }
   };
@@ -35,7 +39,7 @@ const Register = () => {
           <h2 className="text-2xl font-bold text-white">Create an Account</h2>
           <p className="text-slate-400 text-sm mt-1">Start your AI-powered career assessment</p>
         </div>
-        
+
         {error && (
           <div className="mb-4 p-3 bg-red-900/30 border border-red-500/50 text-red-200 rounded-lg text-sm text-center">
             {error}
@@ -45,8 +49,8 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -56,8 +60,8 @@ const Register = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -67,8 +71,8 @@ const Register = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-1">Password</label>
-            <input 
-              type="password" 
+            <input
+              type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -76,16 +80,16 @@ const Register = () => {
               placeholder="••••••••"
             />
           </div>
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             disabled={loading}
             className="w-full py-3 px-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg transition-colors flex items-center justify-center mt-6 disabled:opacity-70"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Account'}
           </button>
         </form>
-        
+
         <p className="text-center text-slate-400 text-sm mt-6">
           Already have an account? <Link to="/login" className="text-cyan-400 hover:underline">Log in</Link>
         </p>
