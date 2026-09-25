@@ -9,6 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
 
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -17,17 +18,29 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setStatusMsg('');
 
     try {
       await register(name, email, password);
       navigate('/assessment');
     } catch (err) {
       if (!err.response) {
-        setError('Cannot reach the server. It may be waking up — please wait 30 seconds and try again.');
+        // Cold start — retry once after waiting
+        setStatusMsg('Server is waking up... retrying in 35 seconds. Please wait.');
+        await new Promise((res) => setTimeout(res, 35000));
+        setStatusMsg('Retrying...');
+        try {
+          await register(name, email, password);
+          navigate('/assessment');
+          return;
+        } catch (retryErr) {
+          setError(retryErr.response?.data?.detail || 'Server unavailable. Please try again in a moment.');
+        }
       } else {
         setError(err.response?.data?.detail || 'Registration failed. Please try again.');
       }
       setLoading(false);
+      setStatusMsg('');
     }
   };
 
@@ -81,12 +94,21 @@ const Register = () => {
             />
           </div>
 
+          {statusMsg && (
+            <p className="text-cyan-300 text-xs text-center mt-2 animate-pulse">{statusMsg}</p>
+          )}
+
           <button
             type="submit"
             disabled={loading}
             className="w-full py-3 px-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg transition-colors flex items-center justify-center mt-6 disabled:opacity-70"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Account'}
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                {statusMsg ? 'Please wait...' : 'Creating...'}
+              </span>
+            ) : 'Create Account'}
           </button>
         </form>
 
