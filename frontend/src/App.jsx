@@ -11,7 +11,8 @@ import { useContext } from 'react';
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   if (loading) return <div className="h-screen flex items-center justify-center text-white">Loading...</div>;
-  return user ? children : <Navigate to="/login" />;
+  const hasToken = localStorage.getItem('token');
+  return (user || hasToken) ? children : <Navigate to="/login" />;
 };
 
 function App() {
