@@ -3,13 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../services/AuthContext';
 import { Compass, Loader2 } from 'lucide-react';
 
+// ── Fixed local account — works with NO backend/internet ──────────────────────
+const LOCAL_EMAIL    = 'user@gmail.com';
+const LOCAL_PASSWORD = 'user1234';
+const LOCAL_USER     = { name: 'user', email: 'user@gmail.com' };
+// ─────────────────────────────────────────────────────────────────────────────
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState('');
-  
+
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -19,13 +25,23 @@ const Login = () => {
     setError('');
     setStatusMsg('');
 
+    // ── Local-first check (instant, no network needed) ──────────────────────
+    if (
+      email.trim().toLowerCase() === LOCAL_EMAIL &&
+      password === LOCAL_PASSWORD
+    ) {
+      localStorage.setItem('token', 'local-auth-token');
+      localStorage.setItem('user', JSON.stringify(LOCAL_USER));
+      navigate('/assessment');
+      return;
+    }
+
+    // ── Backend path for all other accounts ─────────────────────────────────
     try {
       await login(email, password);
-      // login() returns instantly for the local account — no backend needed
       navigate('/assessment');
     } catch (err) {
       if (!err.response) {
-        // Network / server-cold-start — retry once after a short wait
         setStatusMsg('Server is waking up… retrying in 35 seconds. Please wait.');
         await new Promise((res) => setTimeout(res, 35000));
         setStatusMsg('Retrying…');
