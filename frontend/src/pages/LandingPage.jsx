@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import { BrainCircuit, LineChart, Map, Target } from 'lucide-react';
+import { useContext } from 'react';
+import AuthContext from '../services/AuthContext';
 
 const LandingPage = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
@@ -18,7 +22,7 @@ const LandingPage = () => {
           Stop guessing your next career move. Answer a few questions and let our ML models predict your ideal role, estimate your salary, and generate a personalized roadmap to get there.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-          <Link to="/register" className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+          <Link to={user ? "/assessment" : "/register"} className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]">
             Start Career Assessment
           </Link>
           <a href="#features" className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-xl transition-colors border border-slate-700">
