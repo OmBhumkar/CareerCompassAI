@@ -18,21 +18,26 @@ const Login = () => {
     setLoading(true);
     setError('');
     setStatusMsg('');
-    
+
     try {
       await login(email, password);
+      // login() returns instantly for the local account — no backend needed
       navigate('/assessment');
     } catch (err) {
       if (!err.response) {
-        setStatusMsg('Server is waking up... retrying in 35 seconds. Please wait.');
+        // Network / server-cold-start — retry once after a short wait
+        setStatusMsg('Server is waking up… retrying in 35 seconds. Please wait.');
         await new Promise((res) => setTimeout(res, 35000));
-        setStatusMsg('Retrying...');
+        setStatusMsg('Retrying…');
         try {
           await login(email, password);
           navigate('/assessment');
           return;
         } catch (retryErr) {
-          setError(retryErr.response?.data?.detail || 'Server unavailable. Please try again in a moment.');
+          setError(
+            retryErr.response?.data?.detail ||
+            'Server unavailable. Please try again in a moment.'
+          );
         }
       } else {
         setError(err.response?.data?.detail || 'Login failed. Please check your credentials.');
