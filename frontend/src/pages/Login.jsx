@@ -3,12 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../services/AuthContext';
 import { Compass, Loader2 } from 'lucide-react';
 
-// ── Fixed local account — works with NO backend/internet ──────────────────────
-const LOCAL_EMAIL    = 'user@gmail.com';
-const LOCAL_PASSWORD = 'user1234';
-const LOCAL_USER     = { name: 'user', email: 'user@gmail.com' };
-// ─────────────────────────────────────────────────────────────────────────────
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,18 +19,8 @@ const Login = () => {
     setError('');
     setStatusMsg('');
 
-    // ── Local-first check (instant, no network needed) ──────────────────────
-    if (
-      email.trim().toLowerCase() === LOCAL_EMAIL &&
-      password === LOCAL_PASSWORD
-    ) {
-      localStorage.setItem('token', 'local-auth-token');
-      localStorage.setItem('user', JSON.stringify(LOCAL_USER));
-      navigate('/assessment');
-      return;
-    }
-
-    // ── Backend path for all other accounts ─────────────────────────────────
+    // login() in AuthContext checks local credentials FIRST (user@gmail.com / user1234)
+    // and calls setUser() so PrivateRoute sees the user — then falls back to backend.
     try {
       await login(email, password);
       navigate('/assessment');
