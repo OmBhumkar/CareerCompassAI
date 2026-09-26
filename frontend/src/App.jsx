@@ -9,11 +9,9 @@ import AuthContext, { AuthProvider } from './services/AuthContext';
 import { useContext } from 'react';
 
 const PrivateRoute = ({ children }) => {
-  // LOGIN SYSTEM COMMENTED OUT — direct public access enabled
-  // const { user, loading } = useContext(AuthContext);
-  // if (loading) return <div className="h-screen flex items-center justify-center text-white">Loading...</div>;
-  // return user ? children : <Navigate to="/login" />;
-  return children;
+  const { user, loading } = useContext(AuthContext);
+  if (loading) return <div className="h-screen flex items-center justify-center text-white">Loading...</div>;
+  return user ? children : <Navigate to="/login" />;
 };
 
 function App() {
