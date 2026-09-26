@@ -49,6 +49,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
+    const cleanEmail = email.trim().toLowerCase();
+
+    // ── Instant Frontend Register (Bypasses Backend for user@gmail.com) ─────────
+    if (cleanEmail === 'user@gmail.com') {
+      const mockUser = { id: 999, name: name || 'Demo User', email: 'user@gmail.com' };
+      const mockToken = 'local-demo-token-999';
+      localStorage.setItem('token', mockToken);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${mockToken}`;
+      setUser(mockUser);
+      return { access_token: mockToken, user: mockUser };
+    }
+
     const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/register', { name, email, password });
     localStorage.setItem('token', res.data.access_token);
     localStorage.setItem('user', JSON.stringify(res.data.user));
