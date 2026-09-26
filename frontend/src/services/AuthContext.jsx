@@ -26,20 +26,20 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    // ── Local-first authentication ──────────────────────────────────────────
-    if (
-      email.trim().toLowerCase() === LOCAL_ACCOUNT.email.toLowerCase() &&
-      password === LOCAL_ACCOUNT.password
-    ) {
-      const mockUser  = { name: LOCAL_ACCOUNT.name, email: LOCAL_ACCOUNT.email };
-      const mockToken = 'local-auth-token';
+    const cleanEmail = email.trim().toLowerCase();
+
+    // ── Instant Frontend Login (Bypasses Backend for user@gmail.com) ─────────
+    if (cleanEmail === 'user@gmail.com' && password === 'user1234') {
+      const mockUser = { id: 999, name: 'Demo User', email: 'user@gmail.com' };
+      const mockToken = 'local-demo-token-999';
       localStorage.setItem('token', mockToken);
       localStorage.setItem('user', JSON.stringify(mockUser));
       axios.defaults.headers.common['Authorization'] = `Bearer ${mockToken}`;
       setUser(mockUser);
       return { access_token: mockToken, user: mockUser };
     }
-    // ── Fallback: try the real backend for other accounts ───────────────────
+
+    // ── Real Backend Login (For all other email IDs) ─────────────────────────
     const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/login', { email, password });
     localStorage.setItem('token', res.data.access_token);
     localStorage.setItem('user', JSON.stringify(res.data.user));
