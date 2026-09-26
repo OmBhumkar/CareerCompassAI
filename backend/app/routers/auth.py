@@ -43,6 +43,8 @@ def create_access_token(data: dict):
 
 @router.post("/register", response_model=Token)
 def register(user: UserCreate, db: Session = Depends(get_db)):
+    # LOGIN SYSTEM COMMENTED OUT — Returns instant dummy token
+    """
     db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -52,18 +54,26 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    
-    access_token = create_access_token(data={"sub": db_user.email})
-    return {"access_token": access_token, "token_type": "bearer", "user": {"id": db_user.id, "name": db_user.name, "email": db_user.email}}
+    """
+    return {
+        "access_token": "disabled-auth-token",
+        "token_type": "bearer",
+        "user": {"id": 1, "name": user.name or "Guest", "email": user.email}
+    }
 
 @router.post("/login", response_model=Token)
 def login(user: UserLogin, db: Session = Depends(get_db)):
+    # LOGIN SYSTEM COMMENTED OUT — Returns instant dummy token
+    """
     db_user = db.query(User).filter(User.email == user.email).first()
     if not db_user or not verify_password(user.password, db_user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
         )
-        
-    access_token = create_access_token(data={"sub": db_user.email})
-    return {"access_token": access_token, "token_type": "bearer", "user": {"id": db_user.id, "name": db_user.name, "email": db_user.email}}
+    """
+    return {
+        "access_token": "disabled-auth-token",
+        "token_type": "bearer",
+        "user": {"id": 1, "name": "Guest User", "email": user.email}
+    }

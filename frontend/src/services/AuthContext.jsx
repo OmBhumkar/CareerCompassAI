@@ -12,9 +12,11 @@ const LOCAL_ACCOUNT = {
 // ──────────────────────────────────────────────────────────────────────────────
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // LOGIN SYSTEM COMMENTED OUT — Default active guest user so all app features work without login
+  const [user, setUser] = useState({ id: 1, name: 'Guest User', email: 'user@gmail.com' });
+  const [loading, setLoading] = useState(false);
 
+  /*
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
@@ -24,44 +26,24 @@ export const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   }, []);
+  */
 
   const login = async (email, password) => {
-    const cleanEmail = email.trim().toLowerCase();
-
-    // ── Instant Frontend Login (Bypasses Backend for user@gmail.com) ─────────
-    if (cleanEmail === 'user@gmail.com' && password === 'user1234') {
-      const mockUser = { id: 999, name: 'Demo User', email: 'user@gmail.com' };
-      const mockToken = 'local-demo-token-999';
-      localStorage.setItem('token', mockToken);
-      localStorage.setItem('user', JSON.stringify(mockUser));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${mockToken}`;
-      setUser(mockUser);
-      return { access_token: mockToken, user: mockUser };
-    }
-
-    // ── Real Backend Login (For all other email IDs) ─────────────────────────
-    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/login', { email, password });
-    localStorage.setItem('token', res.data.access_token);
-    localStorage.setItem('user', JSON.stringify(res.data.user));
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
-    setUser(res.data.user);
-    return res.data;
+    // LOGIN SYSTEM COMMENTED OUT — Returns instant success without backend check
+    const mockUser = { id: 1, name: 'Guest User', email: email || 'user@gmail.com' };
+    setUser(mockUser);
+    return { access_token: 'disabled-auth-token', user: mockUser };
   };
 
   const register = async (name, email, password) => {
-    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/register', { name, email, password });
-    localStorage.setItem('token', res.data.access_token);
-    localStorage.setItem('user', JSON.stringify(res.data.user));
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
-    setUser(res.data.user);
-    return res.data;
+    // LOGIN SYSTEM COMMENTED OUT — Returns instant success without backend check
+    const mockUser = { id: 1, name: name || 'Guest User', email: email || 'user@gmail.com' };
+    setUser(mockUser);
+    return { access_token: 'disabled-auth-token', user: mockUser };
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
-    setUser(null);
+    // setUser(null);
   };
 
   return (
