@@ -2,7 +2,16 @@
 
 An AI-powered career prediction, salary estimation, and personalized career roadmap platform.
 
-## Features
+## 🚀 Live Demo & Deployments
+
+- **Frontend (Vercel)**: [https://career-compass-ai-sandy.vercel.app](https://career-compass-ai-sandy.vercel.app)
+- **Backend API (Render)**: `https://careercompassai-17gg.onrender.com`
+
+### 🔑 Quick Demo Login (Instant Frontend Bypass)
+- **Email**: `user@gmail.com`
+- **Password**: `user1234`
+*(Note: Logging in with `user@gmail.com` bypasses backend cold starts for an instant interactive demo! Any other email connects directly to the live Render backend.)*
+
 
 - **XGBoost Career Prediction**: Predicts your ideal tech career based on education, skills, and experience (Accuracy ~79%).
 - **CatBoost Salary Estimation**: Realistic data-driven salary predictions tailored to your location, skills, and target domain (R2 ~0.95).
