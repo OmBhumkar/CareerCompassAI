@@ -87,49 +87,14 @@ const Assessment = () => {
         soft_skills_score
       };
 
-      // Comprehensive mock career predictions for instant demo or fallback
-      const mockCareers = [
+      // Dynamic evaluation based on assessment skills (used as fallback if backend is unreachable)
+      const roleScores = [
         {
-          career: 'Software Engineer (Full Stack)',
-          match_percentage: 92,
-          salary_estimation: {
-            symbol: '₹',
-            estimated_salary: '14.5',
-            lower_range: '11.0',
-            upper_range: '18.0',
-            currency: 'LPA'
-          },
+          career: 'Data Scientist',
+          score: (formData.data_analysis * 4) + (formData.ml * 4) + (formData.python * 2) + (formData.sql * 2) + (formData.cgpa * 0.5),
+          salary_estimation: { symbol: '₹', estimated_salary: '16.5', lower_range: '12.0', upper_range: '21.0', currency: 'LPA' },
           roadmap: {
-            missing_skills: [
-              'Docker & Kubernetes',
-              'System Design & Microservices',
-              ...(formData.communication < 2 ? ['Technical & Client Communication'] : []),
-              ...(formData.leadership < 2 ? ['Team Leadership & Code Reviews'] : ['CI/CD Automated Pipelines'])
-            ],
-            roadmap: [
-              { title: 'Core Full Stack Mastery', duration: 'Month 1-2', desc: 'Master React, Node.js, and PostgreSQL for robust web applications.' },
-              { title: 'System Design & Scalability', duration: 'Month 3-4', desc: 'Learn microservices architecture, caching strategies with Redis, and load balancing.' },
-              { title: 'Cloud & DevOps Integration', duration: 'Month 5-6', desc: 'Deploy production applications using Docker, Kubernetes, and AWS pipelines.' },
-              { title: 'Production Project & Portfolio', duration: 'Month 6+', desc: 'Build an end-to-end AI-powered SaaS product and showcase to tech recruiters.' }
-            ]
-          }
-        },
-        {
-          career: 'Data Scientist & AI Specialist',
-          match_percentage: 86,
-          salary_estimation: {
-            symbol: '₹',
-            estimated_salary: '16.2',
-            lower_range: '12.5',
-            upper_range: '20.5',
-            currency: 'LPA'
-          },
-          roadmap: {
-            missing_skills: [
-              'Advanced PyTorch & TensorFlow',
-              'Feature Engineering & Pipelines',
-              ...(formData.problem_solving < 2 ? ['Complex Algorithmic Problem Solving'] : ['MLOps & Model Monitoring'])
-            ],
+            missing_skills: ['Advanced PyTorch & Transformers', 'Feature Stores (Feast)', 'MLOps Pipeline Deployment'],
             roadmap: [
               { title: 'Python & Statistical Modeling', duration: 'Month 1-2', desc: 'Master statistical inference, probability distributions, Pandas and NumPy.' },
               { title: 'Machine Learning In-Depth', duration: 'Month 3-4', desc: 'Build regression, ensemble trees (XGBoost/LightGBM), and hyperparameter tuning.' },
@@ -139,21 +104,25 @@ const Assessment = () => {
           }
         },
         {
-          career: 'Cloud Architect & DevOps Engineer',
-          match_percentage: 79,
-          salary_estimation: {
-            symbol: '₹',
-            estimated_salary: '15.0',
-            lower_range: '11.5',
-            upper_range: '19.0',
-            currency: 'LPA'
-          },
+          career: 'Cybersecurity Analyst',
+          score: (formData.security * 5) + (formData.networking * 4) + (formData.cpp * 2) + (formData.python * 1.5),
+          salary_estimation: { symbol: '₹', estimated_salary: '13.5', lower_range: '10.0', upper_range: '17.0', currency: 'LPA' },
           roadmap: {
-            missing_skills: [
-              'Infrastructure as Code (Terraform)',
-              'Kubernetes Cluster Ingress',
-              'Cloud Security & Zero Trust'
-            ],
+            missing_skills: ['Penetration Testing (Metasploit)', 'SIEM Tool Mastery (Splunk)', 'Zero Trust Architecture'],
+            roadmap: [
+              { title: 'Networking & Security Fundamentals', duration: 'Month 1-2', desc: 'TCP/IP, cryptographic protocols, firewall management, and OS hardening.' },
+              { title: 'Threat Detection & SIEM Tools', duration: 'Month 3-4', desc: 'Splunk search queries, incident response playbooks, and log analysis.' },
+              { title: 'Vulnerability Assessment & Pen Testing', duration: 'Month 5-6', desc: 'Nessus scans, ethical hacking methodologies, and remediation planning.' },
+              { title: 'Security Operations Capstone', duration: 'Month 6+', desc: 'Build incident playbooks and prepare for Security+ / CEH certifications.' }
+            ]
+          }
+        },
+        {
+          career: 'Cloud Engineer',
+          score: (formData.cloud * 5) + (formData.networking * 3) + (formData.security * 2) + (formData.python * 1.5),
+          salary_estimation: { symbol: '₹', estimated_salary: '15.0', lower_range: '11.5', upper_range: '19.0', currency: 'LPA' },
+          roadmap: {
+            missing_skills: ['Infrastructure as Code (Terraform)', 'Kubernetes Cluster Ingress', 'Cloud Security & Cost Optimization'],
             roadmap: [
               { title: 'Linux & Cloud Networking', duration: 'Month 1-2', desc: 'Deep dive into VPC, subnets, routing tables, and Linux system internals.' },
               { title: 'Containerization & Orchestration', duration: 'Month 3-4', desc: 'Production Kubernetes cluster management, Helm charts, and container security.' },
@@ -163,21 +132,39 @@ const Assessment = () => {
           }
         },
         {
-          career: 'Product Manager (Tech)',
-          match_percentage: 73,
-          salary_estimation: {
-            symbol: '₹',
-            estimated_salary: '17.5',
-            lower_range: '13.0',
-            upper_range: '22.0',
-            currency: 'LPA'
-          },
+          career: 'Full Stack Developer',
+          score: (formData.web_dev * 4) + (formData.js * 4) + (formData.sql * 2) + (formData.python * 1.5) + (formData.java * 1.5),
+          salary_estimation: { symbol: '₹', estimated_salary: '14.5', lower_range: '11.0', upper_range: '18.0', currency: 'LPA' },
           roadmap: {
-            missing_skills: [
-              'PRD & User Story Writing',
-              'A/B Experimentation & Metrics',
-              'Go-To-Market Strategy'
-            ],
+            missing_skills: ['Docker & Kubernetes', 'System Design & Microservices', 'CI/CD Automated Pipelines'],
+            roadmap: [
+              { title: 'Core Full Stack Mastery', duration: 'Month 1-2', desc: 'Master React, Node.js, and PostgreSQL for robust web applications.' },
+              { title: 'System Design & Scalability', duration: 'Month 3-4', desc: 'Learn microservices architecture, caching strategies with Redis, and load balancing.' },
+              { title: 'Cloud & DevOps Integration', duration: 'Month 5-6', desc: 'Deploy production applications using Docker, Kubernetes, and AWS pipelines.' },
+              { title: 'Production Project & Portfolio', duration: 'Month 6+', desc: 'Build an end-to-end AI-powered SaaS product and showcase to tech recruiters.' }
+            ]
+          }
+        },
+        {
+          career: 'UI/UX Designer',
+          score: (formData.design * 6) + (formData.web_dev * 2) + (formData.presentation * 2),
+          salary_estimation: { symbol: '₹', estimated_salary: '11.5', lower_range: '8.5', upper_range: '15.0', currency: 'LPA' },
+          roadmap: {
+            missing_skills: ['Design Systems at Scale', 'Interactive Motion Prototyping', 'Usability Testing'],
+            roadmap: [
+              { title: 'UX Research & Information Architecture', duration: 'Month 1-2', desc: 'User interviews, persona building, task flows, and paper wireframing.' },
+              { title: 'Visual UI Design in Figma', duration: 'Month 3-4', desc: 'Master design systems, typography hierarchy, accessible contrast, and auto-layout.' },
+              { title: 'Interactive Prototyping & Motion', duration: 'Month 5-6', desc: 'High-fidelity micro-interactions, smart animations, and usability test runs.' },
+              { title: 'Case Study Portfolio', duration: 'Month 6+', desc: 'Publish 3 comprehensive UX case studies detailing the design thinking journey.' }
+            ]
+          }
+        },
+        {
+          career: 'Product Manager',
+          score: (formData.leadership * 3) + (formData.communication * 3) + (formData.problem_solving * 2.5) + (formData.decision_making * 2.5),
+          salary_estimation: { symbol: '₹', estimated_salary: '17.5', lower_range: '13.0', upper_range: '22.0', currency: 'LPA' },
+          roadmap: {
+            missing_skills: ['PRD & Spec Writing', 'A/B Testing & Cohort Analysis', 'Go-To-Market Execution'],
             roadmap: [
               { title: 'Product Discovery & Market Research', duration: 'Month 1-2', desc: 'User persona definition, qualitative interviews, and pain point validation.' },
               { title: 'Data Analytics & Metric Tracking', duration: 'Month 3-4', desc: 'Cohort retention analysis, North Star metric mapping, and product analytics.' },
@@ -187,6 +174,17 @@ const Assessment = () => {
           }
         }
       ];
+
+      // Rank by computed score
+      roleScores.sort((a, b) => b.score - a.score);
+      const topMatch = Math.min(96, Math.max(76, Math.round(78 + (roleScores[0].score * 1.5))));
+
+      const mockCareers = roleScores.slice(0, 3).map((item, idx) => ({
+        career: item.career,
+        match_percentage: idx === 0 ? topMatch : Math.max(45, topMatch - (idx * 14) - (idx * 2)),
+        salary_estimation: item.salary_estimation,
+        roadmap: item.roadmap
+      }));
 
       const careerDetailsMap = {};
       mockCareers.forEach(item => {
@@ -211,12 +209,6 @@ const Assessment = () => {
         roadmap: mockCareers[0].roadmap,
         user_data: payload
       };
-
-      // If instant demo user, skip backend delay
-      if (user?.email === 'user@gmail.com') {
-        navigate('/dashboard', { state: { result: mockResult } });
-        return;
-      }
 
       // Try local FastAPI backend first if running, else Render backend
       const endpointsToTry = [
