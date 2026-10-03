@@ -19,17 +19,17 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white">
+        <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white flex flex-col">
           <Navbar />
-          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex-1">
             <Routes>
               <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/assessment" element={<PrivateRoute><Assessment /></PrivateRoute>} />
-              <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+              <Route path="/login" element={<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><Login /></main>} />
+              <Route path="/register" element={<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><Register /></main>} />
+              <Route path="/assessment" element={<PrivateRoute><main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><Assessment /></main></PrivateRoute>} />
+              <Route path="/dashboard" element={<PrivateRoute><main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><Dashboard /></main></PrivateRoute>} />
             </Routes>
-          </main>
+          </div>
         </div>
       </Router>
     </AuthProvider>

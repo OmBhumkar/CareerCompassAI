@@ -48,7 +48,14 @@ def train_career_model():
     y_pred = model.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {acc:.4f}")
-    print(classification_report(y_test, y_pred, target_names=target_le.classes_))
+    eval_labels = np.unique(np.concatenate([y_test, y_pred]))
+    print(classification_report(
+        y_test,
+        y_pred,
+        labels=eval_labels,
+        target_names=[target_le.classes_[i] for i in eval_labels],
+        zero_division=0
+    ))
     
     # Save model and encoders
     os.makedirs('models', exist_ok=True)

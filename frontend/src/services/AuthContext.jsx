@@ -40,12 +40,31 @@ export const AuthProvider = ({ children }) => {
     }
 
     // ── Real Backend Login (For all other email IDs) ─────────────────────────
-    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/login', { email, password });
-    localStorage.setItem('token', res.data.access_token);
-    localStorage.setItem('user', JSON.stringify(res.data.user));
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
-    setUser(res.data.user);
-    return res.data;
+    const endpointsToTry = [
+      ...(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? ['http://localhost:8000/api/auth/login']
+        : []),
+      'https://careercompassai-17gg.onrender.com/api/auth/login'
+    ];
+
+    let lastError = null;
+    for (const url of endpointsToTry) {
+      try {
+        const res = await axios.post(url, { email, password });
+        localStorage.setItem('token', res.data.access_token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
+        setUser(res.data.user);
+        return res.data;
+      } catch (err) {
+        lastError = err;
+        // If it's a 400 or 401 response from the server, don't try fallback endpoint
+        if (err.response && (err.response.status === 400 || err.response.status === 401)) {
+          throw err;
+        }
+      }
+    }
+    throw lastError;
   };
 
   const register = async (name, email, password) => {
@@ -62,12 +81,30 @@ export const AuthProvider = ({ children }) => {
       return { access_token: mockToken, user: mockUser };
     }
 
-    const res = await axios.post('https://careercompassai-17gg.onrender.com/api/auth/register', { name, email, password });
-    localStorage.setItem('token', res.data.access_token);
-    localStorage.setItem('user', JSON.stringify(res.data.user));
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
-    setUser(res.data.user);
-    return res.data;
+    const endpointsToTry = [
+      ...(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? ['http://localhost:8000/api/auth/register']
+        : []),
+      'https://careercompassai-17gg.onrender.com/api/auth/register'
+    ];
+
+    let lastError = null;
+    for (const url of endpointsToTry) {
+      try {
+        const res = await axios.post(url, { name, email, password });
+        localStorage.setItem('token', res.data.access_token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
+        setUser(res.data.user);
+        return res.data;
+      } catch (err) {
+        lastError = err;
+        if (err.response && (err.response.status === 400 || err.response.status === 401)) {
+          throw err;
+        }
+      }
+    }
+    throw lastError;
   };
 
   const logout = () => {
