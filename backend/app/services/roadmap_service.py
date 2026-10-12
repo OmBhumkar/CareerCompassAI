@@ -267,6 +267,7 @@ class RoadmapService:
                 }
             ],
             "Cloud Engineer": [
+
                 {
                     "title": "Linux Kernel, Operating Systems & Networking Core",
                     "duration": "Month 1-2 (Weeks 1-8)",
@@ -415,9 +416,126 @@ class RoadmapService:
                         {"name": "Roadmap.sh Product Management Pathway", "type": "Interactive Roadmap", "url": "https://roadmap.sh/product-manager"}
                     ]
                 }
+            ],
+            "Data Engineer": [
+                {"title": "Python & SQL Mastery", "desc": "Advanced programming and complex querying.", "duration": "4 weeks"},
+                {"title": "Data Warehousing", "desc": "Snowflake, Redshift, BigQuery.", "duration": "4 weeks"},
+                {"title": "ETL/ELT Pipelines", "desc": "Apache Airflow, dbt, Spark.", "duration": "5 weeks"},
+                {"title": "Big Data Technologies", "desc": "Hadoop, Kafka, Distributed Systems.", "duration": "5 weeks"},
+                {"title": "Cloud Data Services", "desc": "AWS Glue, Azure Data Factory.", "duration": "4 weeks"},
+                {"title": "Capstone Project", "desc": "Build a real-time data pipeline.", "duration": "4 weeks"}
+            ],
+            "Data Analyst": [
+                {"title": "Excel & SQL Basics", "desc": "Data manipulation and querying.", "duration": "4 weeks"},
+                {"title": "BI Tools (Tableau/Power BI)", "desc": "Creating dashboards and reports.", "duration": "4 weeks"},
+                {"title": "Python for Data Analysis", "desc": "Pandas, Matplotlib, Seaborn.", "duration": "5 weeks"},
+                {"title": "Statistics & Probability", "desc": "A/B testing, hypothesis testing.", "duration": "3 weeks"},
+                {"title": "Data Storytelling", "desc": "Presenting insights effectively.", "duration": "2 weeks"},
+                {"title": "Portfolio Projects", "desc": "End-to-end data analysis projects.", "duration": "4 weeks"}
+            ],
+            "DevOps Engineer": [
+                {"title": "Linux & Scripting", "desc": "Bash, Python, OS administration.", "duration": "4 weeks"},
+                {"title": "Version Control & CI/CD", "desc": "Git, Jenkins, GitHub Actions.", "duration": "4 weeks"},
+                {"title": "Containerization (Docker)", "desc": "Building and managing images.", "duration": "3 weeks"},
+                {"title": "Orchestration (Kubernetes)", "desc": "Deploying scalable applications.", "duration": "5 weeks"},
+                {"title": "Infrastructure as Code", "desc": "Terraform, Ansible.", "duration": "4 weeks"},
+                {"title": "Monitoring & Logging", "desc": "Prometheus, Grafana, ELK stack.", "duration": "3 weeks"}
+            ],
+            "Cybersecurity Analyst": [
+                {"title": "Networking Fundamentals", "desc": "TCP/IP, Firewalls, Routing.", "duration": "4 weeks"},
+                {"title": "Security Principles", "desc": "CIA triad, Cryptography basics.", "duration": "3 weeks"},
+                {"title": "Ethical Hacking", "desc": "Penetration testing, vulnerability scanning.", "duration": "5 weeks"},
+                {"title": "Incident Response", "desc": "Handling and mitigating breaches.", "duration": "4 weeks"},
+                {"title": "Security Tools", "desc": "Wireshark, Metasploit, SIEM.", "duration": "4 weeks"},
+                {"title": "Certifications Prep", "desc": "CompTIA Security+, CEH.", "duration": "4 weeks"}
+            ],
+            "Database Administrator": [
+                {"title": "SQL Fundamentals", "desc": "Complex queries, joins, subqueries.", "duration": "4 weeks"},
+                {"title": "Database Architecture", "desc": "Relational vs NoSQL databases.", "duration": "3 weeks"},
+                {"title": "Performance Tuning", "desc": "Indexing, query optimization.", "duration": "4 weeks"},
+                {"title": "Backup & Recovery", "desc": "Disaster recovery planning.", "duration": "3 weeks"},
+                {"title": "Security & User Management", "desc": "Roles, permissions, encryption.", "duration": "3 weeks"},
+                {"title": "Cloud Databases", "desc": "Amazon RDS, Azure SQL.", "duration": "3 weeks"}
+            ],
+            "UI/UX Designer": [
+                {"title": "Design Principles", "desc": "Color theory, typography, layout.", "duration": "3 weeks"},
+                {"title": "User Research", "desc": "Personas, user journeys, interviews.", "duration": "4 weeks"},
+                {"title": "Wireframing", "desc": "Low-fidelity prototyping.", "duration": "3 weeks"},
+                {"title": "High-Fidelity Prototyping", "desc": "Figma, Adobe XD.", "duration": "5 weeks"},
+                {"title": "Interaction Design", "desc": "Micro-interactions, animations.", "duration": "3 weeks"},
+                {"title": "Portfolio Creation", "desc": "Showcasing design case studies.", "duration": "4 weeks"}
+            ],
+            "Product Manager": [
+                {"title": "Agile & Scrum", "desc": "Methodologies and frameworks.", "duration": "3 weeks"},
+                {"title": "Product Strategy", "desc": "Market research, vision, roadmapping.", "duration": "4 weeks"},
+                {"title": "User Centric Design", "desc": "Understanding user needs.", "duration": "3 weeks"},
+                {"title": "Data-Driven Decisions", "desc": "Metrics, KPIs, A/B testing.", "duration": "4 weeks"},
+                {"title": "Stakeholder Management", "desc": "Communication and negotiation.", "duration": "3 weeks"},
+                {"title": "Launch & Go-to-Market", "desc": "Execution and marketing alignment.", "duration": "3 weeks"}
+            ],
+            "Business Analyst": [
+                {"title": "Business Fundamentals", "desc": "Understanding organizational goals.", "duration": "3 weeks"},
+                {"title": "Requirements Gathering", "desc": "Interviewing, documenting.", "duration": "4 weeks"},
+                {"title": "Data Analysis (Excel/SQL)", "desc": "Extracting insights from data.", "duration": "4 weeks"},
+                {"title": "Process Modeling", "desc": "BPMN, flowcharts.", "duration": "3 weeks"},
+                {"title": "BI & Visualization", "desc": "Tableau, Power BI.", "duration": "3 weeks"},
+                {"title": "Communication Skills", "desc": "Presenting to stakeholders.", "duration": "3 weeks"}
+            ],
+            "Graphic Designer": [
+                {"title": "Design Fundamentals", "desc": "Layout, color, typography.", "duration": "3 weeks"},
+                {"title": "Adobe Photoshop", "desc": "Image editing and manipulation.", "duration": "4 weeks"},
+                {"title": "Adobe Illustrator", "desc": "Vector graphics and logos.", "duration": "4 weeks"},
+                {"title": "Branding & Identity", "desc": "Creating cohesive brand visual assets.", "duration": "4 weeks"},
+                {"title": "Digital & Print Design", "desc": "Adapting designs for mediums.", "duration": "3 weeks"},
+                {"title": "Portfolio Development", "desc": "Showcasing best works.", "duration": "4 weeks"}
+            ],
+            "Digital Marketer": [
+                {"title": "Marketing Fundamentals", "desc": "Funnels, target audience, branding.", "duration": "3 weeks"},
+                {"title": "SEO & SEM", "desc": "Search engine optimization and marketing.", "duration": "4 weeks"},
+                {"title": "Social Media Marketing", "desc": "Organic and paid social strategies.", "duration": "4 weeks"},
+                {"title": "Content Strategy", "desc": "Copywriting, blog posts, video.", "duration": "3 weeks"},
+                {"title": "Email Marketing", "desc": "Campaigns, automation, list building.", "duration": "3 weeks"},
+                {"title": "Analytics (Google Analytics)", "desc": "Tracking and optimizing ROI.", "duration": "3 weeks"}
+            ],
+            "Financial Analyst": [
+                {"title": "Accounting Basics", "desc": "Financial statements, balance sheets.", "duration": "3 weeks"},
+                {"title": "Advanced Excel", "desc": "Pivot tables, VLOOKUP, macros.", "duration": "4 weeks"},
+                {"title": "Financial Modeling", "desc": "DCF, forecasting, valuation.", "duration": "5 weeks"},
+                {"title": "Corporate Finance", "desc": "Capital budgeting, risk management.", "duration": "4 weeks"},
+                {"title": "Data Analysis", "desc": "SQL/Python for financial data.", "duration": "3 weeks"},
+                {"title": "Reporting & Presentation", "desc": "Communicating financial health.", "duration": "3 weeks"}
+            ],
+            "HR Manager": [
+                {"title": "HR Fundamentals", "desc": "Labor laws, compliance, ethics.", "duration": "3 weeks"},
+                {"title": "Talent Acquisition", "desc": "Recruitment, interviewing, onboarding.", "duration": "4 weeks"},
+                {"title": "Employee Relations", "desc": "Conflict resolution, engagement.", "duration": "4 weeks"},
+                {"title": "Performance Management", "desc": "Appraisals, feedback, KPIs.", "duration": "3 weeks"},
+                {"title": "Compensation & Benefits", "desc": "Payroll, perks, incentives.", "duration": "3 weeks"},
+                {"title": "HR Analytics", "desc": "Using data to improve retention.", "duration": "3 weeks"}
+
             ]
         }
         
+        required_skills_map = {
+            "Business Analyst": ["Data Analysis", "SQL", "Tableau/Power BI", "Business Acumen", "Communication"],
+            "Cloud Engineer": ["AWS/Azure/GCP", "Linux", "Networking", "Docker/Kubernetes", "Terraform"],
+            "Cybersecurity Analyst": ["Network Security", "Ethical Hacking", "Cryptography", "Linux", "Incident Response"],
+            "Data Scientist": ["Python", "SQL", "Machine Learning", "Statistics", "Data Visualization"],
+            "Database Administrator": ["SQL", "Database Design", "Performance Tuning", "Backup & Recovery", "Linux"],
+            "DevOps Engineer": ["CI/CD", "Docker/Kubernetes", "AWS/Azure/GCP", "Linux", "Python/Bash"],
+            "Digital Marketer": ["SEO/SEM", "Content Strategy", "Google Analytics", "Social Media Marketing", "Copywriting"],
+            "Financial Analyst": ["Excel", "Financial Modeling", "Data Analysis", "Accounting", "Corporate Finance"],
+            "Full Stack Developer": ["JavaScript/TypeScript", "React/Angular", "Node.js/Python", "SQL/NoSQL", "Git"],
+            "Graphic Designer": ["Adobe Photoshop", "Illustrator", "Typography", "Color Theory", "UI/UX Basics"],
+            "HR Manager": ["Talent Acquisition", "Employee Relations", "HRIS", "Performance Management", "Communication"],
+            "Machine Learning Engineer": ["Python", "Deep Learning", "MLOps", "Software Engineering", "Cloud Platforms"],
+            "Product Manager": ["Agile/Scrum", "Product Strategy", "User Research", "Data Analysis", "Communication"],
+            "Software Developer": ["Java/C++/Python", "Data Structures", "Algorithms", "System Design", "Version Control"],
+            "UI/UX Designer": ["Figma", "User Research", "Prototyping", "Wireframing", "Interaction Design"],
+            "Data Engineer": ["Python/Scala", "SQL", "ETL/ELT", "Spark/Hadoop", "Cloud Data Warehouses"],
+            "Data Analyst": ["SQL", "Excel", "Tableau/Power BI", "Python/R", "Statistical Analysis"]
+        }
+
         # Default roadmap if career not specifically mapped
         default_roadmap = [
             {
@@ -474,9 +592,10 @@ class RoadmapService:
         
         # Analyze skill gaps based on user_data to personalize further
         missing_skills = []
-        if user_data.get('python', 0) < 2 and predicted_career in ['Data Scientist', 'Machine Learning Engineer', 'Data Engineer']:
+
+        if user_data.get('python', 0) < 2 and predicted_career in ['Data Scientist', 'Machine Learning Engineer', 'Data Engineer', 'Data Analyst']:
             missing_skills.append("Python Programming")
-        if user_data.get('sql', 0) < 2 and predicted_career in ['Data Scientist', 'Database Administrator', 'Full Stack Developer', 'Data Engineer', 'Data Analyst']:
+        if user_data.get('sql', 0) < 2 and predicted_career in ['Data Scientist', 'Database Administrator', 'Full Stack Developer', 'Data Engineer', 'Data Analyst', 'Business Analyst']:
             missing_skills.append("SQL Databases & Optimization")
         if user_data.get('cloud', 0) < 2 and predicted_career in ['Cloud Engineer', 'DevOps Engineer', 'Machine Learning Engineer', 'Data Engineer']:
             missing_skills.append("Cloud Infrastructure (AWS/GCP)")
@@ -484,7 +603,7 @@ class RoadmapService:
             missing_skills.append("Modern Frontend Architecture")
         if user_data.get('security', 0) < 2 and predicted_career in ['Cybersecurity Analyst', 'DevOps Engineer', 'Cloud Engineer']:
             missing_skills.append("Network Security & Threat Modeling")
-        if user_data.get('design', 0) < 2 and predicted_career in ['UI/UX Designer', 'Product Manager']:
+        if user_data.get('design', 0) < 2 and predicted_career in ['UI/UX Designer', 'Product Manager', 'Graphic Designer']:
             missing_skills.append("Figma & Design Systems")
         if user_data.get('communication', 2) < 2:
             missing_skills.append("Professional & Technical Communication")
@@ -492,19 +611,30 @@ class RoadmapService:
             missing_skills.append("Team Leadership & Agile Mentoring")
         if user_data.get('problem_solving', 2) < 2:
             missing_skills.append("Complex Problem Solving & Algorithms")
-            
+        if user_data.get('js', 0) < 2 and predicted_career in ['Full Stack Developer']:
+            missing_skills.append("JavaScript")
+        if user_data.get('networking', 0) < 2 and predicted_career in ['Cybersecurity Analyst', 'Cloud Engineer', 'DevOps Engineer']:
+            missing_skills.append("Networking Concepts")
+        if user_data.get('ml', 0) < 2 and predicted_career in ['Data Scientist', 'Machine Learning Engineer']:
+            missing_skills.append("Machine Learning Basics")
+        if user_data.get('data_analysis', 0) < 2 and predicted_career in ['Data Scientist', 'Data Analyst', 'Business Analyst', 'Financial Analyst']:
+            missing_skills.append("Data Analysis Skills")
+
         # Assemble targeted resources for each detected missing skill
         skill_resources = {}
         for skill in missing_skills:
             skill_resources[skill] = SKILL_RESOURCES.get(skill, [
                 {"name": f"{skill} Learning Guide", "type": "Documentation", "url": "https://roadmap.sh"}
             ])
+
             
         return {
             "career": predicted_career,
             "roadmap": roadmap,
             "missing_skills": missing_skills,
-            "skill_resources": skill_resources
+            "skill_resources": skill_resources,
+            "required_skills": required_skills_map.get(predicted_career, ["Programming Fundamentals", "Problem Solving", "Communication", "Version Control"])
+
         }
 
 roadmap_service = RoadmapService()
